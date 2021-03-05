@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
-        python-version: [2.7, 3.5]  # 3.6 and 3.7 works already
+        python-version: [2.7, 3.5, 3.6, 3.7]  # 3.6 and 3.7 works
         # exclude:
         #   - os: windows-latest
         #     python-version: 2.7
@@ -44,6 +44,7 @@ jobs:
       - name: conda setup
         run: |
           conda config --set always_yes True
+          conda --version
           conda install -c pyviz "pyctdev>=0.5"
           doit ecosystem_setup
           doit env_create --name=${{ env.ENV_NAME }} --python=${{ matrix.python-version }}
