@@ -42,7 +42,6 @@ tests = [
     'flake8',
     'nbsmoke >=0.2.6',
     'pytest >=2.8.5',
-    'pytest-mpl',  # only available on pip and conda-forge
 ]
 
 extras_require = {
@@ -52,7 +51,9 @@ extras_require = {
         'nbsite >=0.6.1',
         'sphinx_holoviz_theme',
     ],
-    'tests_extra': tests,
+    'tests_extra': tests + [
+        'pytest-mpl',  # only available on pip and conda-forge
+    ],
     # until pyproject.toml/equivalent is widely supported (setup_requires
     # doesn't work well with pip)
     'build': [
