@@ -52,7 +52,6 @@ jobs:
           eval "$(conda shell.bash hook)"
           conda activate ${{ env.ENV_NAME }}
           doit develop_install ${{ env.CHANS_DEV}} -o ${{ env.HV_REQUIREMENTS }}
-          pip install pytest-mpl
           conda list
       - name: doit env_capture
         run: |
@@ -74,3 +73,10 @@ jobs:
           eval "$(conda shell.bash hook)"
           conda activate ${{ env.ENV_NAME }}
           doit test_unit_extra
+      - name: mpl
+        run: |
+          eval "$(conda shell.bash hook)"
+          conda activate ${{ env.ENV_NAME }}
+          pip install pytest-mpl
+          pytest --mpl-generate-path=baseline
+          pytest --mpl
